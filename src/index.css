@@ -1,0 +1,14 @@
+/* src/index.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #111;
+  color: #eee;
+}
+
+.game-ui, .tower-selector, .wave-manager {
+  padding: 10px;
+  background: #222;
+  margin: 5px;
+  border-radius: 5px;
+}

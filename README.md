@@ -1,25 +1,94 @@
-# Balloon Tower Defense 5 Clone (2011, Ninja Kiwi)
+# Bloon Defense
 
-In the game, players attempt to prevent balloons (referred to as "bloons" in-game) from reaching the end of a set course by placing towers or road items along it that can pop the bloons in a variety of ways, typically by utilizing the power of monkeys. Some towers can stall the bloons and give the other towers more time to pop them by freezing and gluing the bloons. Money is gained by popping bloons, completing levels, and collecting bananas from existing banana farms which can be spent on new towers, upgrades for existing ones, or temporary items such as exploding pineapples and road spikes.
-   
-Original Photo for Reference:
- 
-![image](https://user-images.githubusercontent.com/75475136/116334192-a8d7b880-a789-11eb-9c27-0c524b4d463d.png)
-   
-One of my favourite web browser games growing up, easy to play, contains multiple rounds of balloons (increasingly difficult) that reward cash after it's popped by a tower projectile (Dozens of towers i.e. pure damage to balloons, slow effect, area of effect damage).
-     
-# Space: Begin Round (Important !)
-  
-Pygame Installation
-- https://www.pygame.org/wiki/GettingStarted
-- Make sure you have Python installed
-    
-W: + Speed
+A React TypeScript implementation of a tower defense game inspired by Bloons TD.
 
-S: - Speed
+## Features
 
-https://www.pygame.org/docs/ref/pygame.html
-"pip3 install pygame
-python3 myscript.py"
- 
-Unlimited waves and tower upgrades coming soon!
+- Classic tower defense gameplay
+- Multiple tower types with different abilities
+- Various enemy types with different properties
+- Wave-based progression system
+- Interactive tower placement
+- Real-time game mechanics
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/bloon.git
+cd bloon
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## Development
+
+### Project Structure
+
+```
+src/
+├── components/     # React components
+│   └── Game/      # Game-related components
+├── game/          # Game logic and mechanics
+├── types/         # TypeScript type definitions
+└── assets/        # Images and other static assets
+```
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+## Game Mechanics
+
+### Towers
+- Different tower types with unique abilities
+- Upgradeable towers (coming soon)
+- Strategic placement options
+
+### Enemies
+- Multiple enemy types
+- Progressive difficulty
+- Different movement patterns
+
+### Waves
+- Wave-based gameplay
+- Increasing difficulty
+- Multiple enemy types per wave
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- Inspired by the original Bloons TD game
+- Built with React and TypeScript
+- Uses Vite for fast development
