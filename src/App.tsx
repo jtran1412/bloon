@@ -2,7 +2,7 @@ import React from 'react';
 import Game from './components/Game/Game';
 import './App.css';
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
       <header className="App-header">
@@ -13,6 +13,6 @@ function App() {
       </main>
     </div>
   );
-}
+};
 
 export default App;

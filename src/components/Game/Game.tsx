@@ -675,23 +675,18 @@ const Game: React.FC = () => {
     setGameState(prev => {
       const updatedTowers = prev.towers.map(t => {
         if (t.id === tower.id) {
-          // Create new tower object with updated stats
-          const newUpgrades = {
-            ...t.upgrades,
-            [path === 1 ? 'path1' : 'path2']: currentLevel + 1
-          };
-
+          // Create new tower object with updated stats and incremented level
           return {
             ...t,
             ...nextUpgrade.effects,
-            upgrades: newUpgrades
+            upgrades: {
+              ...t.upgrades,
+              [path === 1 ? 'path1' : 'path2']: currentLevel + 1
+            }
           };
         }
         return t;
       });
-
-      // Log the upgrade for debugging
-      console.log(`Upgrading ${tower.type} path ${path} from level ${currentLevel} to ${currentLevel + 1}`);
 
       return {
         ...prev,
@@ -780,9 +775,14 @@ const Game: React.FC = () => {
           return true;
         });
 
-      // Check for game over
+      // Check for game over immediately when health reaches 0
       if (prev.player.health <= 0) {
         setShowGameOver(true);
+        // Stop the game loop
+        if (gameLoopRef.current) {
+          cancelAnimationFrame(gameLoopRef.current);
+          gameLoopRef.current = null;
+        }
         return {
           ...prev,
           player: {
@@ -793,7 +793,7 @@ const Game: React.FC = () => {
         };
       }
 
-      // Update bullets and handle hits
+      // Rest of the update logic...
       const updatedBullets: Bullet[] = [];
       const poppedBloons: Enemy[] = [];
       const newParticles: Particle[] = [];
@@ -821,7 +821,7 @@ const Game: React.FC = () => {
         }
       });
 
-      // Update towers with speed multiplier
+      // Update towers
       const newBullets: Bullet[] = [];
       const updatedTowers = prev.towers.map(tower => {
         const { tower: updatedTower, hitEnemy } = updateTower(tower, updatedEnemies, (1 / 30) * speedMultiplier);
@@ -835,7 +835,7 @@ const Game: React.FC = () => {
               updatedEnemies[enemyIndex].effects = {
                 ...updatedEnemies[enemyIndex].effects,
                 ...bullet.effects,
-                duration: 3 // Effect lasts for 3 seconds
+                duration: 3
               };
             }
             
@@ -854,18 +854,14 @@ const Game: React.FC = () => {
         return updatedTower;
       });
 
-      // Create child bloons from popped bloons
-      const childBloons: Enemy[] = [];
-      poppedBloons.forEach(enemy => {
-        const children = createChildBloons(enemy);
-        childBloons.push(...children);
-      });
-
       // Update particles
       setParticles(prev => [
         ...prev.map(p => updateParticle(p, 1/30)).filter((p): p is Particle => p !== null),
         ...newParticles
       ]);
+
+      // Create child bloons from popped bloons
+      const childBloons = poppedBloons.flatMap(enemy => createChildBloons(enemy));
 
       return {
         ...prev,
